@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		31430B9D17B2F48F00C15FB8 /* Dropbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31430B9B17B2F42600C15FB8 /* Dropbox.framework */; };
+		31430BA017B2F58800C15FB8 /* SyncStatusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31430B9F17B2F58800C15FB8 /* SyncStatusViewController.m */; };
 		314DA0D517B0B9D40090BDAB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 314DA0D417B0B9D40090BDAB /* UIKit.framework */; };
 		314DA0D717B0B9D40090BDAB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 314DA0D617B0B9D40090BDAB /* Foundation.framework */; };
 		314DA0D917B0B9D40090BDAB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 314DA0D817B0B9D40090BDAB /* CoreGraphics.framework */; };
@@ -16,7 +18,6 @@
 		314DA0E717B0B9D40090BDAB /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 314DA0E617B0B9D40090BDAB /* Default.png */; };
 		314DA0E917B0B9D40090BDAB /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 314DA0E817B0B9D40090BDAB /* Default@2x.png */; };
 		314DA0EB17B0B9D40090BDAB /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 314DA0EA17B0B9D40090BDAB /* Default-568h@2x.png */; };
-		314DA0F417B0BB580090BDAB /* Dropbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 314DA0F317B0BB580090BDAB /* Dropbox.framework */; };
 		314DA0F617B0BCB50090BDAB /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 314DA0F517B0BCB50090BDAB /* CFNetwork.framework */; };
 		314DA0F817B0BCBA0090BDAB /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 314DA0F717B0BCBA0090BDAB /* Security.framework */; };
 		314DA0FA17B0BCC20090BDAB /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 314DA0F917B0BCC20090BDAB /* SystemConfiguration.framework */; };
@@ -27,6 +28,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		31430B9B17B2F42600C15FB8 /* Dropbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Dropbox.framework; path = "../../../../Downloads/dropbox-ios-sync-sdk-2.0.0-b4 2/Dropbox.framework"; sourceTree = "<group>"; };
+		31430B9E17B2F58800C15FB8 /* SyncStatusViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SyncStatusViewController.h; sourceTree = "<group>"; };
+		31430B9F17B2F58800C15FB8 /* SyncStatusViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SyncStatusViewController.m; sourceTree = "<group>"; };
 		314DA0D117B0B9D40090BDAB /* ContactSync.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ContactSync.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		314DA0D417B0B9D40090BDAB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		314DA0D617B0B9D40090BDAB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -40,7 +44,6 @@
 		314DA0E617B0B9D40090BDAB /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		314DA0E817B0B9D40090BDAB /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		314DA0EA17B0B9D40090BDAB /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		314DA0F317B0BB580090BDAB /* Dropbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Dropbox.framework; path = "../../../../../Downloads/dropbox-ios-sync-sdk-2.0.0-b4 2/Dropbox.framework"; sourceTree = "<group>"; };
 		314DA0F517B0BCB50090BDAB /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		314DA0F717B0BCBA0090BDAB /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		314DA0F917B0BCC20090BDAB /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -62,8 +65,8 @@
 				314DA0FA17B0BCC20090BDAB /* SystemConfiguration.framework in Frameworks */,
 				314DA0F817B0BCBA0090BDAB /* Security.framework in Frameworks */,
 				314DA0F617B0BCB50090BDAB /* CFNetwork.framework in Frameworks */,
-				314DA0F417B0BB580090BDAB /* Dropbox.framework in Frameworks */,
 				314DA0D517B0B9D40090BDAB /* UIKit.framework in Frameworks */,
+				31430B9D17B2F48F00C15FB8 /* Dropbox.framework in Frameworks */,
 				314DA0D717B0B9D40090BDAB /* Foundation.framework in Frameworks */,
 				314DA0D917B0B9D40090BDAB /* CoreGraphics.framework in Frameworks */,
 			);
@@ -75,13 +78,13 @@
 		314DA0C817B0B9D40090BDAB = {
 			isa = PBXGroup;
 			children = (
+				31430B9B17B2F42600C15FB8 /* Dropbox.framework */,
 				314DA10217B0CE500090BDAB /* AddressBook.framework */,
 				314DA0FD17B0BCD10090BDAB /* libc++.dylib */,
 				314DA0FB17B0BCC80090BDAB /* QuartzCore.framework */,
 				314DA0F917B0BCC20090BDAB /* SystemConfiguration.framework */,
 				314DA0F717B0BCBA0090BDAB /* Security.framework */,
 				314DA0F517B0BCB50090BDAB /* CFNetwork.framework */,
-				314DA0F317B0BB580090BDAB /* Dropbox.framework */,
 				314DA0DA17B0B9D40090BDAB /* ContactSync */,
 				314DA0D317B0B9D40090BDAB /* Frameworks */,
 				314DA0D217B0B9D40090BDAB /* Products */,
@@ -113,6 +116,8 @@
 				314DA0E417B0B9D40090BDAB /* AppDelegate.m */,
 				314DA0FF17B0C1CD0090BDAB /* ButtonViewController.h */,
 				314DA10017B0C1CD0090BDAB /* ButtonViewController.m */,
+				31430B9E17B2F58800C15FB8 /* SyncStatusViewController.h */,
+				31430B9F17B2F58800C15FB8 /* SyncStatusViewController.m */,
 				314DA0DB17B0B9D40090BDAB /* Supporting Files */,
 			);
 			path = ContactSync;
@@ -200,6 +205,7 @@
 				314DA0E117B0B9D40090BDAB /* main.m in Sources */,
 				314DA0E517B0B9D40090BDAB /* AppDelegate.m in Sources */,
 				314DA10117B0C1CD0090BDAB /* ButtonViewController.m in Sources */,
+				31430BA017B2F58800C15FB8 /* SyncStatusViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -281,6 +287,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../../../../../Downloads/dropbox-ios-sync-sdk-2.0.0-b4 2\"",
+					"\"$(SRCROOT)/../../../../Downloads/dropbox-ios-sync-sdk-2.0.0-b4 2\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ContactSync/ContactSync-Prefix.pch";
@@ -296,6 +303,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../../../../../Downloads/dropbox-ios-sync-sdk-2.0.0-b4 2\"",
+					"\"$(SRCROOT)/../../../../Downloads/dropbox-ios-sync-sdk-2.0.0-b4 2\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ContactSync/ContactSync-Prefix.pch";
@@ -324,6 +332,7 @@
 				314DA0F017B0B9D40090BDAB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

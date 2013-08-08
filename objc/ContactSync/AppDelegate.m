@@ -10,7 +10,7 @@
 
 #import <Dropbox/Dropbox.h>
 #import "ButtonViewController.h"
-#import "AddressBook/AddressBook.h"
+#import "SyncStatusViewController.h"
 
 #define APP_KEY @"bqc1ih1bbpcboui"
 #define APP_SECRET @"gwav1zwmo35cf88"
@@ -19,35 +19,37 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-  self.window = [[UIWindow alloc]
-    initWithFrame:[[UIScreen mainScreen] bounds]];
-
-  /*
-   * Create a DBAccountManager object. This object lets you link to a Dropbox
-   * user's account which is the first step to working with data on their
-   * behalf.
-   */
-
-  DBAccountManager* accountMgr = [[DBAccountManager alloc]
-    initWithAppKey:APP_KEY
-            secret:APP_SECRET];
-  [DBAccountManager setSharedManager:accountMgr];
-
-  ButtonViewController *controller = [ButtonViewController new];
-
-  self.window.rootViewController = controller;
-  self.window.backgroundColor = [UIColor whiteColor];
-  [self.window makeKeyAndVisible];
-
-  /*
-   * Skip directly to test if user has already linked their account
-   */
-
-  if (accountMgr.linkedAccount) {
-    [self doDropboxTestWithAccount:accountMgr.linkedAccount];
-  }
-
-  return YES;
+    self.window = [[UIWindow alloc]
+                   initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+    /*
+     * Create a DBAccountManager object. This object lets you link to a Dropbox
+     * user's account which is the first step to working with data on their
+     * behalf.
+     */
+    
+    DBAccountManager* accountMgr = [[DBAccountManager alloc]
+                                    initWithAppKey:APP_KEY
+                                    secret:APP_SECRET];
+    [DBAccountManager setSharedManager:accountMgr];
+    
+    
+    /*
+     * Skip directly to test if user has already linked their account
+     */
+    
+    UIViewController *controller;
+    if (accountMgr.linkedAccount) {
+        controller = [self getSyncStatusControllerWithAccount:accountMgr.linkedAccount];
+    } else {
+        controller = [ButtonViewController new];
+    }
+    
+    self.window.rootViewController = controller;
+    self.window.backgroundColor = [UIColor blackColor];
+    [self.window makeKeyAndVisible];
+    
+    return YES;
 }
 
 /*
@@ -57,85 +59,22 @@
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url
   sourceApplication:(NSString *)source annotation:(id)annotation
 {
-  DBAccount *account = [[DBAccountManager sharedManager] handleOpenURL:url];
-  if (account) {
-    NSLog(@"App linked successfully!");
-
-    [self doDropboxTestWithAccount:account];
-
-    return YES;
-  }
-  return NO;
-}
-
-- (void)doDropboxTestWithAccount:(DBAccount *)account
-{
-  DBDatastore *store = [DBDatastore openDefaultStoreForAccount:account error:nil];
-  DBTable *contactsTable = [store getTable:@"contacts"];
-
-  NSLog(@"starting test");
-
-  ABAddressBookRef addressBook = ABAddressBookCreate();
-
-  CFArrayRef allPeople = ABAddressBookCopyArrayOfAllPeople(addressBook);
-  CFIndex nPeople = ABAddressBookGetPersonCount(addressBook);
-
-  for (CFIndex personIndex = 0; personIndex < nPeople; personIndex++) {
-    ABRecordRef person = CFArrayGetValueAtIndex(allPeople, personIndex);
-    ABMultiValueRef phones = ABRecordCopyValue(person, kABPersonPhoneProperty);
-    NSString *firstName = (__bridge_transfer NSString *)ABRecordCopyValue(person, kABPersonFirstNameProperty);
-    NSString *lastName = (__bridge_transfer NSString *)ABRecordCopyValue(person, kABPersonLastNameProperty);
-
-    NSLog(@"%@ %@", firstName, lastName);
-
-    /*
-     * Iterate over phone numbers
-     */
-    NSMutableArray *numbers = [[NSMutableArray alloc] initWithCapacity:ABMultiValueGetCount(phones)];
-    for (CFIndex i = 0; i < ABMultiValueGetCount(phones); i++) {
-      NSString *number = (__bridge_transfer NSString *)ABMultiValueCopyValueAtIndex(phones, i);
-      [numbers addObject:number];
-      NSLog(@"%@", number);
+    DBAccount *account = [[DBAccountManager sharedManager] handleOpenURL:url];
+    if (account) {
+        NSLog(@"App linked successfully!");
+        
+        self.window.rootViewController = [self getSyncStatusControllerWithAccount:account];        
+        
+        return YES;
     }
-
-    [contactsTable insert:@{ @"firstName": firstName, @"lastName": lastName, @"numbers": numbers }];
-
-    CFRelease(phones);
-  }
-  CFRelease(allPeople);
-  CFRelease(addressBook);
-
-  DBError *error;
-  if (![store sync:&error]) {
-    NSLog(@"error: %@", [error description]);
-  }
-
-  NSLog(@"Done");
-
-  /*
-   * Print out contents of Datastore
-   */
-  // NSArray *results = [contactsTable query:@{ } error:nil];
-  // for (DBRecord *elem in results){
-  //   NSLog(elem[@"firstName"]);
-  // }
+    return NO;
 }
 
-//- (void)startSignificantChangeUpdates
-//{
-//  // Create the location manager if this object does not
-//  // already have one.
-//  if (nil == locationManager)
-//    locationManager = [[CLLocationManager alloc] init];
-//
-//  locationManager.delegate = self;
-//  [locationManager startMonitoringSignificantLocationChanges];
-//}
-//
-//// Delegate method from the CLLocationManagerDelegate protocol.
-//- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
-//  // TODO get account
-//  [self syncContactsWithAccount:account];
-//}
+- (SyncStatusViewController *)getSyncStatusControllerWithAccount:(DBAccount *)account
+{
+    SyncStatusViewController *result = [SyncStatusViewController new];
+    result.account = account;
+    return result;
+}
 
 @end
